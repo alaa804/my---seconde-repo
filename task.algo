@@ -1,0 +1,144 @@
+/*probleme 1 */
+ALGORITHM algorithm_name
+VAR
+   tab1 : ARRAY_OF INTEGER[100];
+    tab2 : ARRAY_OF INTEGER[100];
+    sum1:INTEGER:=0;
+     sum2:INTEGER:=0;
+      sum:INTEGER:=0;
+    i:INTEGER:=0;
+    j:INTEGER:=0;
+BEGIN
+   FOR i FROM 0 TO tab1.length DO
+   FOR j FROM 0 TO tab2.length DO
+   IF (tab1[i]=tab2[j]) THEN
+        break;
+   END_IF
+   IF (j=tab2.length) THEN
+    sum1+=tab1[i];
+  END_IF
+  FOR j FROM 0 TO tab2.length DO
+   FOR i FROM 0 TO tab1.length DO
+   IF (tab1[i]=tab2[j]) THEN
+        break;
+   END_IF
+   END_FOR
+   IF (i=tab1.length) THEN
+    sum2+=tab2[j];
+  END_IF
+  END_FOR
+  sum:=sum1+sum2;
+  write("la somme des elements distincts est",sum);
+END
+/* hash table*/
+ALGORITHM problem1-htable
+VAR
+   tab1 : ARRAY_OF INTEGER[100];
+    tab2 : ARRAY_OF INTEGER[100];
+    sum:INTEGER=0;
+    i:INTEGER=0;
+    j:INTEGER=0;
+    k:INTEGER=0;
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+   tabkeys:ARRAY_OF INTEGER[100];
+   tabvalues:ARRAY_OF INTEGER[100];
+BEGIN
+    FOR i FROM 0 TO tab1.length DO
+   FOR j FROM 0 TO tab2.length DO
+    IF (tab1[i]=tab2[j]) THEN
+     htab.insert(1,tab1[i]);
+    END_IF
+    END_FOR
+    IF (j=tab2.length) THEN
+    htab.insert(0,tab1[i]);
+    END_IF
+    END_FOR
+FOR j FROM 0 TO tab2.length DO
+   FOR i FROM 0 TO tab1.length DO
+    IF (tab1[i]=tab2[j]) THEN
+     htab.insert(1,tab2[j]);
+    END_IF
+    END_FOR
+    IF (i=tab1.length) THEN
+    htab.insert(0,tab2[j]);
+    END_IF
+    END_FOR
+     tabkeys=htab.getKeys(); /* recuperer toutes les clefs du hashtable dans un tableau  "tabkeys"*/
+     tabvalues=htab.getValues();/* recuperer toutes les valeurs du hashtable dans un tableau "tabvalues"*/
+     FOR k FROM 0 TO tabKeys.length DO
+       IF(tabKeys[k]= 0) THEN
+       sum+=tabvalues[k];
+    END_IF
+    END_FOR
+    write("la somme des elements distincts est",sum);
+END
+/*probleme2*/
+ALGORITHM algorithm_name
+VAR
+   tab1 : ARRAY_OF INTEGER[100];
+    tab2 : ARRAY_OF INTEGER[100];
+    sum1:INTEGER:=0;
+     sum2:INTEGER:=0;
+      sum:INTEGER:=0;
+    i:INTEGER:=0;
+    j:INTEGER:=0;
+BEGIN
+   FOR i FROM 0 TO tab1.length DO
+    FOR j FROM 0 TO tab2.length DO
+   IF (tab1[i]=tab2[j]) THEN
+        sum1+=tab1[i]
+   END_IF
+    END_FOR
+    END_FOR
+    FOR j FROM 0 TO tab2.length DO
+    FOR i FROM 0 TO tab1.length DO
+   IF (tab1[i]=tab2[j]) THEN
+        sum2+=tab2[j]
+END_IF
+    END_FOR
+    END_FOR
+  sum:=sum1+sum2;
+ write("la somme des elements distincts est",sum);
+END
+/*hash table*/
+ALGORITHM problem1-htable
+VAR
+   tab1 : ARRAY_OF INTEGER[100];
+    tab2 : ARRAY_OF INTEGER[100];
+    sum:INTEGER:=0;
+    i:INTEGER:=0;
+    j:INTEGER:=0;
+    k:INTEGER:=0;
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+   tabkeys:ARRAY_OF INTEGER[100];
+   tabvalues:ARRAY_OF INTEGER[100];
+BEGIN
+    FOR i FROM 0 TO tab1.length DO
+   FOR j FROM 0 TO tab2.length DO
+    IF (tab1[i]=tab2[j]) THEN
+     htab.insert(1,tab1[i]);
+    END_IF
+    END_FOR
+    IF (j=tab2.length) THEN
+    htab.insert(0,tab1[i]);
+    END_IF
+    END_FOR
+FOR j FROM 0 TO tab2.length DO
+   FOR i FROM 0 TO tab1.length DO
+    IF (tab1[i]=tab2[j]) THEN
+     htab.insert(1,tab2[j]);
+    END_IF
+    END_FOR
+    IF (i=tab1.length) THEN
+    htab.insert(0,tab2[j]);
+    END_IF
+    END_FOR
+     tabkeys=htab.getKeys();
+     tabvalues=htab.getValues();
+     FOR k FROM 0 TO tabKeys.length DO
+       IF(tabKeys[k]= 1) THEN
+       sum+=tabvalues[k];
+    END_IF
+    END_FOR
+    write("la somme des elements distincts est",sum);
+END
